@@ -102,8 +102,8 @@ public class userInterface {
                                     dateList = userInputData.timeRangeToEnd(numberOfDay, dayOrWeek, lastDay);
                                     System.out.println(dateList);
                                 }catch (ParseException except){
-                                System.out.println("Error reading datetime format!");
-                                Menu();
+                                    System.out.println("Error reading datetime format!");
+                                    Menu();
                                 }
                                 break;
                             case "d":
@@ -369,8 +369,8 @@ public class userInterface {
             }
         }while(mainOption!=4);
     }
-    public static void main(String[] args) {
-       Menu();
-    }
+
+
 
 }
+
