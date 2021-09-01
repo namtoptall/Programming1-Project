@@ -1,6 +1,5 @@
 package finalProject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,14 +52,6 @@ public class summary {
         }
         return dataTransform;
     }
-    public static void main(String[] args) throws IOException {
-        summary test = new summary();
-        data testing = new data();
-        for (ArrayList<Date> item:  test.groupData(testing.timeRangeToEnd(135,"week","08/07/2021"),135)){
-            System.out.print(item.size());
-            System.out.println(item);
-        }
-    }
-}
 
+}
 
