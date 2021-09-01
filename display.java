@@ -74,32 +74,74 @@ public class display {
                 labelConversion.add(labelFormat);
             }
             System.out.println();
-            System.out.println("*************************************");
-            for (int i = 0; i < labelConversion.size(); i++) {
-                System.out.print("*\t");
-                System.out.print(labelConversion.get(i)+"\t|\t"+data[i]);
-                System.out.print("\t*");
-                System.out.println();
+            long[] starCount = new long[labelConversion.size()];
+            for (long stars : starCount){
+                stars = 0;
             }
-            System.out.println("*************************************");
+            for (int i = 0; i < labelConversion.size(); i++) {
+                String line = "";
+                line+="*  ";
+                line+=labelConversion.get(i)+"  |  "+String.valueOf(data[i]);
+                line+="  *";
+                starCount[i]+=line.length();
+            }
+            long totalStar = bubbleSort(starCount, "value", "descending")[0];
+            for (int i = 0;i<totalStar;i++){
+                System.out.print("*");
+            }
+            System.out.println();
+            for (int i = 0; i < labelConversion.size(); i++) {
+                String line = "";
+                System.out.print("*  ");
+                line+="*\t";
+                System.out.print(labelConversion.get(i)+"  |  "+String.valueOf(data[i]));
+                line+=labelConversion.get(i)+"  |  "+String.valueOf(data[i]);
+                line+="\t";
+                if (line.length() <totalStar-1){
+                    for (int j = 0;j<(totalStar-1-line.length());j++){
+                        System.out.print(" ");
+                    }
+                }
+                System.out.println("*");
+            }
+            for (int i = 0;i<totalStar;i++){
+                System.out.print("*");
+            }
             System.out.println();
         }else if (resultType.equals("new_total")){
             String labelFormat = obj.format(label.get(0).get(0))+" - "+obj.format(label.get(label.size()-1).get(label.get(label.size()-1).size()-1));
             labelConversion.add(labelFormat);
             System.out.println();
-            System.out.println("*****************************************");
-            System.out.print("*\t");
-            System.out.print(labelFormat+"\t|\t"+data[0]);
-            System.out.print("\t*");
+            int totalStar = 0;
+            for (int i = 0; i < labelConversion.size(); i++) {
+                String line = "";
+                line+="*  ";
+                line+=labelConversion.get(i)+"  |  "+String.valueOf(data[i]);
+                line+="  *";
+                totalStar+=line.length();
+            }
+            for (int i = 0;i<totalStar;i++){
+                System.out.print("*");
+            }
             System.out.println();
-            System.out.println("*****************************************");
+            String currentStar = "";
+            System.out.print("*  ");
+            currentStar+= "*  ";
+            System.out.print(labelFormat+"  |  "+data[0]);
+            currentStar+=labelFormat+"  |  "+String.valueOf(data[0]);
+            System.out.print("  ");
+            currentStar+="  ";
+            if (currentStar.length() <totalStar-1){
+                for (int j = 0;j<(totalStar-1-currentStar.length());j++){
+                    System.out.print(" ");
+                }
+            }
+            System.out.println("*");
+            for (int i = 0;i<totalStar;i++){
+                System.out.print("*");
+            }
             System.out.println();
         }
-    }
-    public static void main(String[] args) {
-        long[] sampleData = {24,20,40,90,38,33,30,30,39,39};
-        display first = new display();
-        first.chartDisplay(sampleData);
     }
     static long[] bubbleSort(long[] originalArray, String returnType, String sortOrder) {
         long n = originalArray.length;
