@@ -8,6 +8,8 @@ public class summary {
     public summary(){
 
     }
+    
+    //Add value to group
     public ArrayList<ArrayList<Date>> groupData(ArrayList<Date> data){
         ArrayList<ArrayList<Date>> dataTransform = new ArrayList<ArrayList<Date>>();
         for (int i = 0; i < data.size(); i++) {
@@ -17,6 +19,8 @@ public class summary {
         }
         return dataTransform;
     }
+
+    //Sort value in group
     public ArrayList<ArrayList<Date>> groupData(ArrayList<Date> data, int numberOfGroup){
         ArrayList<ArrayList<Date>> dataTransform = new ArrayList<ArrayList<Date>>();
         if (numberOfGroup>data.size()){
