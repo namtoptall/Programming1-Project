@@ -1,4 +1,7 @@
 package finalProject;
+
+
+// import the necessary libraries
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +12,7 @@ import java.util.Scanner;
 
 public class userInterface {
     public static void Menu(){
+        // create a Menu class, we will call it in the Main file, some below lines are variables for the Menu
         int mainOption;
         ArrayList<Date> dateList = new ArrayList<>();
         ArrayList<ArrayList<Date>> dateGroup = new ArrayList<>();
@@ -21,6 +25,8 @@ public class userInterface {
         ArrayList<Long> result = new ArrayList<>();
         SimpleDateFormat obj = new SimpleDateFormat("MM/dd/yyyy");
         int numberOfGroup;
+        /* create an interface table, user can choose what option that they want
+        (However, it should be started at the beginning) */
         do {
             System.out.println("==============================");
             System.out.println("|            Main            |");
@@ -30,25 +36,27 @@ public class userInterface {
             System.out.println("|   3. Option [3]: Display   |");
             System.out.println("|   4. Option [4]: exit      |");
             System.out.println("==============================");
-            Scanner sc = new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);  // create a new scanner
             System.out.print("Choose your option: ");
             mainOption = sc.nextInt();
-            switch (mainOption) {
+            switch (mainOption) { // switch cases that contains case 1, 2, 3 ,4
                 case 1:
                     String dataOption;
                     data userInputData = new data();
-                    System.out.println("You have chosen option 1: Data");
+                    System.out.println("You have chosen option 1: Data"); // case 1
+                    // do loop, traverse from case 1,2,3,4
                     do {
                         System.out.println("===============================================================================");
                         System.out.println("|                                    Data                                     |");
                         System.out.println("===============================================================================");
                         System.out.println("|   1. Data -> Option [a]: A pair of start date and end date (inclusive)      |");
                         System.out.println("|   2. Data -> Option [b]: A number of days or weeks from a particular date   |");
-                        System.out.println("|   2. Data -> Option [c]: A number of days or weeks to a particular date     |");
-                        System.out.println("|   3. Data -> Option [d]: Back to Main                                       |");
+                        System.out.println("|   3. Data -> Option [c]: A number of days or weeks to a particular date     |");
+                        System.out.println("|   4. Data -> Option [d]: Back to Main                                       |");
                         System.out.println("===============================================================================");
                         System.out.print("Choose your option: ");
                         dataOption = sc.next();
+                        // one more switch statement implement what happen after user input their choice
                         switch (dataOption){
                             case "a":
                                 System.out.println("Display start date and end date");
@@ -113,10 +121,12 @@ public class userInterface {
                         }
                     }while (dataOption!="d");
                     break;
-                case 2:
+                case 2: // like case 1, the code continued to case 2
                     System.out.println("You have chosen option 2: Summary");
                     summary userInputSummary = new summary();
                     String summaryOption;
+                    /* one more time, we implement exactly same logic with case 1.
+                    However, there are some differences of 2 parts. */
                     do {
                         System.out.println("=================================================");
                         System.out.println("|                    Summary                    |");
@@ -129,7 +139,7 @@ public class userInterface {
                         System.out.print("Choose your option: ");
                         summaryOption = sc.next();
                         switch (summaryOption){
-                            case "a":
+                            case "a": // group data option
                                 System.out.println("You have chosen Summary -> Group data");
                                 String groupOption;
                                 do {
@@ -142,7 +152,7 @@ public class userInterface {
                                     System.out.println("===========================================================================");
                                     System.out.print("Choose your option: ");
                                     groupOption = sc.next();
-                                    switch (groupOption){
+                                    switch (groupOption){     // one more switch statement that divide group data into 2 part
                                         case "a1":
                                             System.out.println("No grouping");
                                             dateGroup = new ArrayList<ArrayList<Date>>();
@@ -162,7 +172,7 @@ public class userInterface {
                                                 System.out.println(item);
                                             }
                                             break;
-                                        case "a3":
+                                        case "a3": // return to the summary
                                             groupOption = "a3";
                                             break;
                                         default:
@@ -171,7 +181,7 @@ public class userInterface {
                                     }
                                 }while (groupOption!="a3");
                                 break;
-                            case "b":
+                            case "b": // metric option from summary
                                 System.out.println("You have chosen Summary -> Metric");
                                 String metricOption;
                                 do {
@@ -185,7 +195,7 @@ public class userInterface {
                                     System.out.println("===============================================================");
                                     System.out.print("Choose your option: ");
                                     metricOption = sc.next();
-                                    switch (metricOption){
+                                    switch (metricOption){     // 4 more options
                                         case "b1":
                                             System.out.println("Positive cases");
                                             metricOptionString = "new_cases";
@@ -207,7 +217,7 @@ public class userInterface {
                                     }
                                 }while (metricOption!="b4");
                                 break;
-                            case "c":
+                            case "c":    // Result of the summary from data grouping and metrics
                                 System.out.println("You have chosen Summary -> Result");
                                 String resultOption;
                                 do {
@@ -220,8 +230,9 @@ public class userInterface {
                                     System.out.println("===============================================================");
                                     System.out.print("Choose your option: ");
                                     resultOption = sc.next();
-                                    switch (resultOption){
+                                    switch (resultOption){ //
                                         case "c1":
+                                            // calculate New total cases based on WHOdata and input data
                                             System.out.println("New total");
                                             resultOptionString = "new_total";
                                             vaccinatedGroup = new ArrayList<Long>();
@@ -256,6 +267,7 @@ public class userInterface {
                                             System.out.println(result);
                                             break;
                                         case "c2":
+                                            // calculate up-to
                                             System.out.println("Up to");
                                             resultOptionString = "up_to";
                                             vaccinatedGroup = new ArrayList<Long>();
@@ -279,6 +291,7 @@ public class userInterface {
                                                 vaccinatedGroup.add(vaccinatedCalculation);
                                                 otherGroup.add(otherCalculation);
                                             }
+                                            // calculate number of vaccinated people based on WHOdata and user input data
                                             if (metricOptionString.equals("people_vaccinated")){
                                                 ArrayList<Long> vaccinatedResultStorage = new ArrayList<>();
                                                 for (int i = 1; i < vaccinatedGroup.size(); i+=2) {
@@ -312,9 +325,9 @@ public class userInterface {
                                 break;
                         }
                     }while (summaryOption!="d");
-                    break;
+                    break;  // back to the main table
 
-                //Display table
+                /*  Display case that show the result after user input correctly in 2 previous part*/
                 case 3:
                     String displayOption;
                     System.out.println("You have chosen option 4: Display");
@@ -329,9 +342,11 @@ public class userInterface {
                         System.out.print("Choose your option: ");
                         displayOption = sc.next();
                         switch (displayOption){
+                            // tabular table
                             case "a":
                                 System.out.println("Display table Range-Value");
                                 display tableDisplay = new display();
+                                // calculate the size of the table to show
                                 long[] totalCalculationReformat = new long[result.size()];
                                 for (int i = 0; i < totalCalculationReformat.length; i++) {
                                     totalCalculationReformat[i] = result.get(i);
@@ -340,7 +355,7 @@ public class userInterface {
                                 tableDisplay.tableDisplay(totalCalculationReformat,dateGroup,resultOptionString);
                                 System.out.println();
                                 break;
-                            case "b":
+                            case "b": // indexes chart, scaling the table
                                 System.out.println("Display chart (24 rows x 80 columns)");
                                 display chartDisplay = new display();
                                 totalCalculationReformat = new long[result.size()];
@@ -361,7 +376,7 @@ public class userInterface {
                     }while (displayOption!="c");
                     break;
                 case 4:
-                    System.out.println("Exiting ...");
+                    System.out.println("Exiting ...");  // exit 
                     break;
                 default:
                     System.out.println("Invalid option!");
