@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class data {
+    // calculate time range from start date to end date
     public ArrayList<Date> timeRangeStartEnd(String start_day, String end_day){
         SimpleDateFormat obj = new SimpleDateFormat("MM/dd/yy");
         ArrayList<Date> result = new ArrayList<Date>();
@@ -30,6 +31,7 @@ public class data {
             return result;
         }
     }
+    // calculate time range from the input date
     public ArrayList<Date> timeRangeFromStart(long day, String weekOrDay, String start_day){
         SimpleDateFormat obj = new SimpleDateFormat("MM/dd/yy");
         ArrayList<Date> result = new ArrayList<Date>();
@@ -59,6 +61,7 @@ public class data {
             return result;
         }
     }
+    // calculate time range upto input date
     public ArrayList<Date> timeRangeToEnd(long day, String weekOrDay, String end_day){
         SimpleDateFormat obj = new SimpleDateFormat("MM/dd/yy");
         ArrayList<Date> result = new ArrayList<Date>();
@@ -99,11 +102,13 @@ public class data {
         System.out.println(total);
     }
 }
+// Read the csv file
 class readData extends data{
     File dataPath;
     public readData(String source){
         dataPath = new File(source);
     }
+    /// get data from file and put in arraylist
     public ArrayList<String> getData(String filter, String filterValue, String target){
         DateFormat obj = new SimpleDateFormat("MM/dd/yy");
         ArrayList<String> result = new ArrayList<String>();
@@ -164,6 +169,7 @@ class readData extends data{
         }
 
     }
+    // get data from csv file and put it in arraylist, then get the row based on the index
     public String getRow(int rowIndex){
         try {
             Scanner fileReader = new Scanner(dataPath);
